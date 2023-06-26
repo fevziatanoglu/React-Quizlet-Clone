@@ -16,7 +16,7 @@ export const AuthProvider = ({children})=> {
         localStorage.removeItem('user');
     }
 
-    return <AuthContext.Provider value={{user}}>{children}</AuthContext.Provider>
+    return <AuthContext.Provider value={{user , loginUser}}>{children}</AuthContext.Provider>
 }   
 
 export const useAuth = () => useContext(AuthContext);

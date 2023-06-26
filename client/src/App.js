@@ -1,6 +1,7 @@
 import HomePage from "./pages/homePage";
 import LoginPage from "./pages/loginPage";
 import {Routes, Route} from "react-router-dom";
+import "./bootstrap.css";
 
 function App() {
   return (
