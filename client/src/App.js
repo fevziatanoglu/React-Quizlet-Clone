@@ -1,15 +1,16 @@
 import HomePage from "./pages/homePage";
 import LoginPage from "./pages/loginPage";
 import {Routes, Route} from "react-router-dom";
-import "./bootstrap.css";
 import RegisterPage from "./pages/registerPage";
 import Header from "./components/Header";
+import Modal from "./components/Modal";
 import ProfilePage from "./pages/profilePage";
 
 function App() {
   return (
     <div className="App">
       <Header/>
+      <Modal>selamın aleyküm ağalar</Modal>
       <Routes>
         <Route path="/home" element={<HomePage />} />
         <Route path="/profile" element={<ProfilePage />} />
