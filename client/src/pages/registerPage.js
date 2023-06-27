@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { useAuth } from "../contexts/authContext";
 import { Link, Navigate } from "react-router-dom";
-import { login } from "../axios";
+import { register } from "../axios";
 
 
-export default function LoginPage() {
+export default function RegisterPage() {
 
     const { user, loginUser } = useAuth();
     
 
-    const [loginForm, setLoginForm] = useState({
+    const [registerForm, setRegisterForm] = useState({
+        username:"",
         email: "",
         password: ""
     })
@@ -17,17 +18,17 @@ export default function LoginPage() {
     if (user) { return <Navigate to="/home" /> }
 
 
-    const handleOnChange = (e) => { setLoginForm({ ...loginForm, [e.target.name]: e.target.value }); }
+    const handleOnChange = (e) => { setRegisterForm({ ...registerForm, [e.target.name]: e.target.value }); }
 
     const loginSubmit = (e) => {
         e.preventDefault();
-        login(loginForm).
+        register(registerForm).
         then(response => {
-            console.log({id : response.data.user._id , username : response.data.user.username})
+            console.log(response)
             loginUser({id : response.data.user._id , username : response.data.user.username})
         })
         .catch(error => console.log(error.response.data.message));
-        console.log(loginForm);
+        console.log(registerForm);
     }
 
     return <div className="d-flex justify-content-center align-items-center ">
@@ -37,16 +38,22 @@ export default function LoginPage() {
             <form className="d-flex flex-column align-items-center justify-content-center gap-2" onSubmit={(e) => loginSubmit(e)}>
 
                 <div className="form-group">
+                    <label>Username</label>
+                    <input type="text" className="form-control" name="username" value={registerForm.username} onChange={(e) => handleOnChange(e)} aria-describedby="emailHelp" placeholder="Enter username" />
+                </div>    
+
+                <div className="form-group">
                     <label>Email address</label>
-                    <input type="email" className="form-control" name="email" value={loginForm.email} onChange={(e) => handleOnChange(e)} aria-describedby="emailHelp" placeholder="Enter email" />
+                    <input type="email" className="form-control" name="email" value={registerForm.email} onChange={(e) => handleOnChange(e)} aria-describedby="emailHelp" placeholder="Enter email" />
                 </div>
 
                 <div className="form-group">
                     <label  >Password</label>
-                    <input type="password" name="password" value={loginForm.password} onChange={(e) => handleOnChange(e)} className="form-control" id="exampleInputPassword1" placeholder="Password" />
+                    <input type="password" name="password" value={registerForm.password} onChange={(e) => handleOnChange(e)} className="form-control" id="exampleInputPassword1" placeholder="Password" />
                 </div>
 
-                <small  class="form-text text-muted">If you don't have an account <Link to="/register">Sign Up</Link></small>
+                <small  class="form-text text-muted">If you have already an account <Link to="/login">Sign In</Link></small>
+
 
                 <button type="submit" className="btn btn-primary w-100">Submit</button>
             </form>
