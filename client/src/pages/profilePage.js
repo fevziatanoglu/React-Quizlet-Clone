@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useAuth } from "../contexts/authContext";
 import { Navigate } from "react-router-dom";
-import { getAllFolders } from "../axios";
+import { getFolders } from "../axios";
 
-export default function HomePage() {
+export default function ProfilePage() {
 
     const { user } = useAuth();
 
@@ -11,7 +11,7 @@ export default function HomePage() {
 
     useEffect(() => {
 
-        getAllFolders()
+        getFolders(user.id)
         .then(response => {
             console.log(response)
         })
@@ -24,7 +24,7 @@ export default function HomePage() {
     }
 
     return <div>
-        Home Page
+        Profile Page
     </div>
 
 };

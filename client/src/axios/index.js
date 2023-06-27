@@ -19,6 +19,10 @@ export async function getFolders(id){
 }
 
 // Folders functions
+export async function getAllFolders(){
+    return await HTTP.get("/folders/getAll");
+}
+
 export async function addFolder(formData){
     return await HTTP.post("/folders/add" , formData);
 }

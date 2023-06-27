@@ -74,7 +74,7 @@ router.get("/getFolders/:id" , async  (req, res) =>{
 
         const userFolders = await Folder.find({ userId : id});
 
-        return res.status(200).json({ message: "User's folders get successfully.", usersFolder });
+        return res.status(200).json({ message: "User's folders get successfully.", userFolders });
 
 
     }catch(error){

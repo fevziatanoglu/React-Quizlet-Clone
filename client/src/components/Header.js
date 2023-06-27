@@ -19,7 +19,7 @@ export default function Header(){
     </li>
 
     <li className="nav-item active">
-      <a className="nav-link" href="#">Profile</a>
+      <a className="nav-link" href="/profile">Profile</a>
     </li>
 
     <li className="nav-item">

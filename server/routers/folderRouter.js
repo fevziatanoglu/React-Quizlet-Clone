@@ -45,6 +45,21 @@ router.put("/update", async (req, res) => {
 
 });
 
+
+router.get("/getAll", async (req, res) => {
+
+    try{
+
+        const allFolders = await Folder.find();
+        return res.status(200).json({ message: 'Getting all folders successful' , allFolders});
+
+    }catch (error) {
+        return res.status(400).json({ message: "Unexpected error!", error });
+    }
+
+
+});
+
 router.get("/getCards/:folderId", async (req, res) => {
 
     try {
