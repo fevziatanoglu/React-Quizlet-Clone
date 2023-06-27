@@ -10,7 +10,6 @@ function App() {
   return (
     <div className="App">
       <Header/>
-      <Modal>selamın aleyküm ağalar</Modal>
       <Routes>
         <Route path="/home" element={<HomePage />} />
         <Route path="/profile" element={<ProfilePage />} />
