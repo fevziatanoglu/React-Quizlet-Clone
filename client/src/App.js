@@ -8,7 +8,7 @@ import ProfilePage from "./pages/profilePage";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App h-full w-full">
       <Header/>
       <Routes>
         <Route path="/home" element={<HomePage />} />

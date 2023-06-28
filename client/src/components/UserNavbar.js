@@ -9,7 +9,7 @@ export default function UserNavbar(){
     const { user , logoutUser } = useAuth();
 
     return (
-        <nav className="bg-blue-950">
+        <nav className="fixed w-full top-0 bg-blue-950">
 
         <div className="flex h-16 items-center justify-between lg:px-5">
 

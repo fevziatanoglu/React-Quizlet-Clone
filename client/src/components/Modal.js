@@ -1,11 +1,9 @@
 import { AiOutlineClose } from "react-icons/ai"
 
-export default function Modal({ isOpen, onClose, children, title }) {
+export default function Modal({ isOpen, onClose, children, title  }) {
   if (!isOpen) return null;
 
   return (
-
-
 
     <>
       {/* make */}
@@ -72,7 +70,6 @@ export default function Modal({ isOpen, onClose, children, title }) {
             <div className="relative p-10 flex-auto">
               {children}
             </div>
-
           </div>
         </div>
       </div>
