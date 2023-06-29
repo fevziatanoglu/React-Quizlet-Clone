@@ -3,18 +3,23 @@ import { BsPersonFill } from "react-icons/bs"
 import { AiOutlinePlus } from "react-icons/ai"
 import { BiLogOut } from "react-icons/bi"
 import { useState } from "react";
+import Modal from "./Modal";
+import AddFolder from "./AddFolder";
 
 
 export default function UserNavbar() {
 
   const { user, logoutUser } = useAuth();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isShowAddFolderModal, setIsShowAddFolderModal] = useState(false);
 
-  return (
+  return (<>
+    {/* navbar */}
     <nav className="fixed w-full top-0 bg-blue-950">
-
+      {/* main div */}
       <div className="flex h-16 items-center justify-between lg:px-5">
 
+        {/* pages div */}
         <div className="flex items-center">
           <a className="font-bold text-3xl text-white hover:cursor-pointer" href="">Quizlet</a>
 
@@ -24,10 +29,15 @@ export default function UserNavbar() {
           </div>
         </div>
 
+        {/* buttons div */}
         <div className="flex gap-3 text-sm font-semibold">
 
-
-          <a className="bg-blue-500 flex p-3 rounded-3xl items-center hover:cursor-pointer hover:bg-blue-300" > <AiOutlinePlus size={25} /></a>
+          {/* add folder button */}
+          <button
+            onClick={(e)=> setIsShowAddFolderModal(true)}
+            className="bg-blue-500 flex p-3 rounded-3xl items-center hover:cursor-pointer hover:bg-blue-300" >
+            <AiOutlinePlus size={25} />
+          </button>
 
           {/* dropdown menu */}
           <button
@@ -65,5 +75,11 @@ export default function UserNavbar() {
       </div>
 
     </nav>
+       
+    {/* add folder modal */}
+    <Modal isOpen={isShowAddFolderModal} onClose={() => setIsShowAddFolderModal(false)} title={"Create New Folder"}>
+      <AddFolder />
+    </Modal>
+  </>
   )
 }

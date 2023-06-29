@@ -4,12 +4,15 @@ import { Navigate } from "react-router-dom";
 import { getFolders } from "../axios";
 import FolderItem from "../components/FolderItem";
 import { AiFillPlusCircle } from "react-icons/ai";
+import Modal from "./Modal";
+import AddFolder from "./AddFolder";
 
 export default function Profile() {
 
     const { user } = useAuth();
 
     const [folders, setFolders] = useState([]);
+    const [isShowAddFolderModal, setIsShowAddFolderModal] = useState(false);
 
     useEffect(() => {
 
@@ -30,14 +33,18 @@ export default function Profile() {
 
             <div className=" grid gap-4 lg:grid-cols-3 sm:gird-cols-1 xs:grid-cols-1">
 
-                {folders.length === 0 ? <div className="bg-purple-950 col-span-3 p-5 rounded text-white font-semibold text-xl flex flex-col justify-center items-center hover:cursor-pointer">
+                {folders.length === 0 ? <div
+                    onClick={(e) => setIsShowAddFolderModal(true)}
+                    className="bg-purple-950 col-span-3 p-5 rounded text-white font-semibold text-xl flex flex-col justify-center items-center hover:cursor-pointer">
                     <h1>WTF MAN ADD SOME FOLDERS</h1>
                     <p className="text-sm text-gray-500">Click to add a new folder</p>
                     <AiFillPlusCircle className="text-white" size={50} />
-                    </div>
+                </div>
                     : <>
-                        <div className="flex flex-row gap-4 bg-purple-950 py-5 px-2 rounded h-[180px] border-purple-950 border-b-8 hover:border-white hover:cursor-pointer">
-                          
+                        <div
+                            onClick={(e) => setIsShowAddFolderModal(true)}
+                            className="flex flex-row gap-4 bg-purple-950 py-5 px-2 rounded h-[180px] border-purple-950 border-b-8 hover:border-white hover:cursor-pointer">
+
                             <div>
                                 <h1 className="font-semibold text-white text-2xl">Create a new folder</h1>
                                 <p className="text-xs font-bold text-gray-500">Click to create a new folder</p>
@@ -46,9 +53,14 @@ export default function Profile() {
 
                         <div className=" w-full grid gap-2 grid-cols-3 lg:px-28 px-4">
                             {folders.map((folder) => {
-                                return <FolderItem folderName={folder.title} cardAmount={folder.cardAmount}  user={folder.userId}/>
+                                return <FolderItem folderName={folder.title} cardAmount={folder.cardAmount} user={folder.userId} />
                             })}
                         </div>
+
+                        {/* add folder modal */}
+                        <Modal isOpen={isShowAddFolderModal} onClose={() => setIsShowAddFolderModal(false)} title={"Create New Folder"}>
+                            <AddFolder />
+                        </Modal>
                     </>}
 
 

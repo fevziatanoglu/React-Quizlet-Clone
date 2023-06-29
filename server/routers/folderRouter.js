@@ -9,7 +9,10 @@ const Card = require("../models/cardModel.js");
 router.post("/add", async (req, res) => {
 
     try {
+        
         const { userId, title, description } = req.body;
+
+        console.log("test")
 
         const newFolder = await Folder.create({
             userId,
