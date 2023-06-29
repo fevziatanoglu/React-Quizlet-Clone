@@ -34,7 +34,7 @@ export default function UserHome() {
                 </div>
 
                 {folders.map((folder, index) => {
-                    return <FolderItem folderName={folder.title} />
+                    return <FolderItem folderName={folder.title} cardAmount={folder.cardAmount}  user={folder.userId}/>
                 })}
             </div>
         </div>

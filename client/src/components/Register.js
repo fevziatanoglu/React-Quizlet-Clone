@@ -17,7 +17,7 @@ export default function Register({toggle}) {
         then(response => {
             console.log({id : response.data.user._id , username : response.data.user.username})
             toast("Register successful!");
-            loginUser({id : response.data.user._id , username : response.data.user.username})
+            loginUser({ id: response.data.user._id, username: response.data.user.username , email: response.data.user.email })
         })
         .catch(error => console.log(error.response.data.message));
         console.log(registerForm);

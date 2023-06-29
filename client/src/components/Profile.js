@@ -46,7 +46,7 @@ export default function Profile() {
 
                         <div className=" w-full grid gap-2 grid-cols-3 lg:px-28 px-4">
                             {folders.map((folder) => {
-                                return <FolderItem folderName={folder.title} />
+                                return <FolderItem folderName={folder.title} cardAmount={folder.cardAmount}  user={folder.userId}/>
                             })}
                         </div>
                     </>}

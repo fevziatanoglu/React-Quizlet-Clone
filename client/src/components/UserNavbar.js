@@ -1,38 +1,69 @@
 import { useAuth } from "../contexts/authContext"
 import { BsPersonFill } from "react-icons/bs"
 import { AiOutlinePlus } from "react-icons/ai"
-import {BiLogOut} from "react-icons/bi"
+import { BiLogOut } from "react-icons/bi"
+import { useState } from "react";
 
 
-export default function UserNavbar(){
+export default function UserNavbar() {
 
-    const { user , logoutUser } = useAuth();
+  const { user, logoutUser } = useAuth();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-    return (
-        <nav className="fixed w-full top-0 bg-blue-950">
+  return (
+    <nav className="fixed w-full top-0 bg-blue-950">
 
-        <div className="flex h-16 items-center justify-between lg:px-5">
+      <div className="flex h-16 items-center justify-between lg:px-5">
 
-          <div className="flex items-center">
-            <a className="font-bold text-3xl text-white hover:cursor-pointer" href="">Quizlet</a>
+        <div className="flex items-center">
+          <a className="font-bold text-3xl text-white hover:cursor-pointer" href="">Quizlet</a>
 
-            <div className="ml-10 flex  gap-5 text-sm font-semibold text-white">
-              <a className="hover:cursor-pointer p-4  border-blue-950 border-b-8 hover:border-blue-500 hover:border-b-8" href="/home">Home</a>
-              <a className="hover:cursor-pointer p-4  border-blue-950 border-b-8 hover:border-blue-500 hover:border-b-8" href="/profile">Your Folders</a>
+          <div className="ml-10 flex  gap-5 text-sm font-semibold text-white">
+            <a className="hover:cursor-pointer p-4  border-blue-950 border-b-8 hover:border-blue-500 hover:border-b-8" href="/home">Home</a>
+            <a className="hover:cursor-pointer p-4  border-blue-950 border-b-8 hover:border-blue-500 hover:border-b-8" href="/profile">Your Folders</a>
+          </div>
+        </div>
+
+        <div className="flex gap-3 text-sm font-semibold">
+
+
+          <a className="bg-blue-500 flex p-3 rounded-3xl items-center hover:cursor-pointer hover:bg-blue-300" > <AiOutlinePlus size={25} /></a>
+
+          {/* dropdown menu */}
+          <button
+            onClick={() => { setIsDropdownOpen((prev) => !prev); }}
+            className="bg-yellow-500 flex p-3 rounded-3xl items-center hover:cursor-pointer hover:bg-yellow-300">
+            <BsPersonFill size={25} />
+          </button>
+          {/* menu */}
+          {isDropdownOpen && <div className="absolute top-20 right-10 bg-blue-600 h-[250px] w-[250px] rounded flex flex-col p-5 gap-5">
+
+            <div className="flex flex-row justify-start items-center gap-2">
+              <BsPersonFill size={25} className="bg-white rounded-xl" />
+              <div className="flex flex-col">
+                <h1 className="text-black font-semibold text-md">{user.username}</h1>
+                <p className="text-gray-400 text-xs">{user.email}</p>
+              </div>
             </div>
-          </div>
 
-          <div className="flex gap-3 text-sm font-semibold">
+            <hr></hr>
 
+            <a className="flex justify-center p-2 hover:bg-blue-200 rounded font-semibold" href="profile">Got to Profile</a>
+            <button
+              onClick={(e) => { logoutUser() }}
+              className="flex justify-center p-2 hover:bg-red-500 rounded font-semibold gap-2" href="">
+              <BiLogOut size={25} />
+              Logout
+            </button>
 
-            <a className="bg-blue-500 flex p-3 rounded-3xl items-center hover:cursor-pointer hover:bg-blue-300" > <AiOutlinePlus size={25} /></a>
-            <a className="bg-yellow-500 flex p-3 rounded-3xl items-center hover:cursor-pointer hover:bg-yellow-300" href="/profile"> <BsPersonFill size={25} /></a>
-            <button onClick={(e)=>{logoutUser()}} className="bg-red-500 flex p-3 rounded-3xl items-center hover:cursor-pointer hover:bg-red-600"> <BiLogOut size={25} /></button>
+          </div>}
 
-          </div>
+          <button onClick={(e) => { logoutUser() }} className="bg-red-500 flex p-3 rounded-3xl items-center hover:cursor-pointer hover:bg-red-600"> <BiLogOut size={25} /></button>
 
         </div>
-       
-      </nav>
-    )
+
+      </div>
+
+    </nav>
+  )
 }

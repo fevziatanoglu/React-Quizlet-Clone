@@ -18,6 +18,10 @@ export async function getFolders(id){
     return await HTTP.get(`/users/getFolders/${id}`);
 }
 
+export async function getUser(id){
+    return await HTTP.get(`/users/getUser/${id}`);
+}
+
 // Folders functions
 export async function getAllFolders(){
     return await HTTP.get("/folders/getAll");

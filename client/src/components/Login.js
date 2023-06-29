@@ -15,9 +15,9 @@ export default function Login({ toggle }) {
         e.preventDefault();
         login(loginForm).
             then(response => {
-                console.log({ id: response.data.user._id, username: response.data.user.username })
+                console.log({ id: response.data.user._id, username: response.data.user.username , email: response.data.user.email})
                 toast("Login successful!");
-                loginUser({ id: response.data.user._id, username: response.data.user.username })
+                loginUser({ id: response.data.user._id, username: response.data.user.username , email: response.data.user.email })
             })
             .catch(error => console.log(error.response.data.message));
         console.log(loginForm);
