@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { getCards, getFolder, updateFolder } from "../axios";
 import { toast } from "react-toastify";
+import CardEditItem from "./CardEditItem";
 
 
 
@@ -8,7 +9,11 @@ export default function EditFolder({ folderId }) {
 
     const [folderForm, setFolderForm] = useState({ folderId, title: "", description: "" });
     const [cards, setCards] = useState([]);
+
     const handleOnChange = (e) => { setFolderForm({ ...folderForm, [e.target.name]: e.target.value }); }
+
+    
+
     function submitEditFolder(e) {
         e.preventDefault();
         console.log(folderForm)
@@ -17,6 +22,8 @@ export default function EditFolder({ folderId }) {
              toast("Folder updated successfully.")
             }).catch(error => console.log(error));
     }
+
+
 
     useEffect(() => {
         console.log(folderId);
@@ -27,7 +34,8 @@ export default function EditFolder({ folderId }) {
         }).catch(error => console.log(error))
 
         getCards(folderId).then(response => {
-            // console.log(response);
+            console.log(response);
+            setCards(response.data.folderCards);
         }).catch(error => console.log(error));
     }, [])
 
@@ -70,6 +78,17 @@ export default function EditFolder({ folderId }) {
             </div>
         </form>
         <hr className="border-yellow-500 mx-5"></hr>
+
+
+        {/* card list!!!! */}
+        <div className="flex flex-col gap-5 mt-10">
+
+            {cards.map((card)=>{
+                return <CardEditItem card={card} cardId={card._id} setCards={setCards} cards={cards}/>
+            })}
+
+        </div>
+
     </div>
 
 }

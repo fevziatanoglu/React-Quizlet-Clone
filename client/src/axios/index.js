@@ -54,7 +54,10 @@ export async function addCard(formData){
 }
 
 export async function updateCard(formData){
-    return await HTTP.post("/cards/update" , formData);
+    return await HTTP.put("/cards/update" , formData);
 }
 
+export async function removeCard(cardId){
+    return await HTTP.delete(`/cards/remove/${cardId}`);
+}
 

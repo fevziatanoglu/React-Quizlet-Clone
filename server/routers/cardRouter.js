@@ -39,15 +39,21 @@ router.put("/update" , async (req, res) => {
 
     try{
         // const { folderId , newWord , newMeaning} = req.params;
-        const { folderId , cardId , newWord , newMeaning} = req.body;
+        const { cardId , word , meaning} = req.body;
 
-        const folder = await Folder.findOneAndUpdate({_id : folderId}, {updatedAt : Date.now()} , {new : true});
+        // Im gonna fix this later
 
-        if(!folder){
-            return res.status(404).json({ message: "Folder not found!" });
+        // const folder = await Folder.findOneAndUpdate({_id : folderId}, {updatedAt : Date.now()} , {new : true});
+
+        // if(!folder){
+        //     return res.status(404).json({ message: "Folder not found!" });
+        // }
+
+        const updatedCard = await Card.findByIdAndUpdate(cardId , {word : word , meaning : meaning} , {new :true});
+
+        if(!updatedCard){
+            return res.status(404).json({ message: "Card not found!" });
         }
-
-        const updatedCard = await Card.findOneAndUpdate({_id : cardId}, {word : newWord , meaning : newMeaning} , {new :true});
 
         return res.status(200).json({ message: 'Card updated successfully', updatedCard });
 
