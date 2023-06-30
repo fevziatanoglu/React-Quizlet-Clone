@@ -15,6 +15,7 @@ export default function UserHome() {
 
         getAllFolders()
             .then(response => {
+                // console.log(response)
                 setFolders(response.data.allFolders)
             })
             .catch(error => console.log(error));
@@ -39,7 +40,7 @@ export default function UserHome() {
                 </div>
 
                 {folders.map((folder, index) => {
-                    return <FolderItem folderName={folder.title} cardAmount={folder.cardAmount}  user={folder.userId}/>
+                    return <FolderItem folderId={folder._id} folderName={folder.title} cardAmount={folder.cardAmount}  user={folder.userId}/>
                 })}
             </div>
         </div>

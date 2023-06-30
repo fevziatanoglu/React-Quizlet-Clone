@@ -42,28 +42,28 @@ export default function Profile() {
                 </div>
                     : <>
                         <div
-                            onClick={(e) => setIsShowAddFolderModal(true)}
+                            onClick={() => setIsShowAddFolderModal(true)}
                             className="flex flex-row gap-4 bg-purple-950 py-5 px-2 rounded h-[180px] border-purple-950 border-b-8 hover:border-white hover:cursor-pointer">
-
+                            <AiFillPlusCircle className="text-white" size={50} />
                             <div>
                                 <h1 className="font-semibold text-white text-2xl">Create a new folder</h1>
                                 <p className="text-xs font-bold text-gray-500">Click to create a new folder</p>
                             </div>
                         </div>
 
-                        <div className=" w-full grid gap-2 grid-cols-3 lg:px-28 px-4">
-                            {folders.map((folder) => {
-                                return <FolderItem folderName={folder.title} cardAmount={folder.cardAmount} user={folder.userId} />
-                            })}
-                        </div>
 
-                        {/* add folder modal */}
-                        <Modal isOpen={isShowAddFolderModal} onClose={() => setIsShowAddFolderModal(false)} title={"Create New Folder"}>
-                            <AddFolder />
-                        </Modal>
+                        {folders.map((folder) => {
+                            return <FolderItem  folderId={folder._id} folderName={folder.title} cardAmount={folder.cardAmount} user={folder.userId} />
+                        })}
+
+
+
                     </>}
 
-
+                {/* add folder modal */}
+                <Modal isOpen={isShowAddFolderModal} onClose={() => setIsShowAddFolderModal(false)} title={"Create New Folder"}>
+                    <AddFolder />
+                </Modal>
             </div>
         </div>
     </div>

@@ -32,11 +32,15 @@ export async function addFolder(formData){
 }
 
 export async function updateFolder(formData){
-    return await HTTP.put("/folders/update" , formData);
+    return await HTTP.put(`/folders/update/${formData.folderId}`  , formData );
+}
+
+export async function getFolder(folderId){
+    return await HTTP.get(`/folders/getFolder/${folderId}`);
 }
 
 export async function getCards(folderId){
-    return await HTTP.get(`/users/getFolders/${folderId}`);
+    return await HTTP.get(`/folders/getCards/${folderId}`);
 }
 
 export async function removeFolder(folderId){

@@ -9,7 +9,7 @@ const Card = require("../models/cardModel.js");
 router.post("/add", async (req, res) => {
 
     try {
-        
+
         const { userId, title, description } = req.body;
 
         console.log("test")
@@ -27,12 +27,14 @@ router.post("/add", async (req, res) => {
     }
 });
 
-router.put("/update", async (req, res) => {
+router.put("/update/:folderId", async (req, res) => {
 
     try {
-        // const {folderId , newTitle , newDescription} = req.params;
-        const { folderId, newTitle, newDescription } = req.body;
-        const updatedFolder = await Folder.findOneAndUpdate({ _id: folderId }, { title: newTitle, description: newDescription, updatedAt: Date.now() }, { new: true })
+        const { folderId } = req.params;
+        const { title, description } = req.body;
+        console.log(req.body);
+        const updatedFolder = await Folder.findByIdAndUpdate(folderId, { title: title, description: description, updatedAt: Date.now() }, { new: true })
+        
         if (!updatedFolder) {
             return res.status(404).json({ message: "Folder not found!" });
         }
@@ -51,12 +53,12 @@ router.put("/update", async (req, res) => {
 
 router.get("/getAll", async (req, res) => {
 
-    try{
+    try {
 
         const allFolders = await Folder.find();
-        return res.status(200).json({ message: 'Getting all folders successful' , allFolders});
+        return res.status(200).json({ message: 'Getting all folders successful', allFolders });
 
-    }catch (error) {
+    } catch (error) {
         return res.status(400).json({ message: "Unexpected error!", error });
     }
 
@@ -82,6 +84,26 @@ router.get("/getCards/:folderId", async (req, res) => {
     }
 
 });
+
+router.get("/getFolder/:folderId", async (req, res) => {
+
+    try {
+        const { folderId } = req.params;
+
+        const folder = await Folder.findById({ _id: folderId });
+
+        if (!folder) {
+            return res.status(404).json({ message: "Folder not found" });
+        }
+
+
+        return res.status(200).json({ message: "Folder get successfully.", folder });
+    } catch (error) {
+        return res.status(400).json({ message: "Unexpected error!", error });
+    }
+
+});
+
 
 
 
