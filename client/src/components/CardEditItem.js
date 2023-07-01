@@ -3,9 +3,9 @@ import { removeCard, updateCard } from "../axios";
 
 
 
-export default function CardEditItem({ card , cardId, setCards , cards }) {
+export default function CardEditItem({ card , removeCardFromList }) {
 
-    const [cardForm, setCardForm] = useState({ cardId: cardId, word: card.word, meaning: card.meaning })
+    const [cardForm, setCardForm] = useState({ cardId: card._id, word: card.word, meaning: card.meaning })
     const handleOnChange = (e) => { setCardForm({ ...cardForm, [e.target.name]: e.target.value }); }
 
     const submitEditCard = (e) => {
@@ -13,24 +13,22 @@ export default function CardEditItem({ card , cardId, setCards , cards }) {
         updateCard(cardForm).then(response => console.log(response)).catch(err => console.log(err));
     }
 
-    const deleteCard = () => {
-        console.log(cardId)
-        console.log(cardForm)
+    const deleteCard = (e) => {
+        e.preventDefault();
+        removeCard(card._id).then(response => {
+            console.log(response)
+            removeCardFromList(card._id)
+        }).catch(err => console.log(err));
 
-        
-        // const updatedCardsList = cards.filter(card => card._id !== cardId);
-        // setCards(updatedCardsList);
+        // removeCardFromList(card._id);
 
-        removeCard(cardId).then(response => console.log(response)).catch(err => console.log(err));
-        // sildikten sonra editFolder'ın içindeki cards'tan sil 
     }
 
     return <form
-        onSubmit={(e) => submitEditCard(e)}
-        className="bg-blue-800 rounded p-5 ">
-            {cardId}
+        onSubmit={(e) =>submitEditCard(e)}
+        className="bg-blue-800 rounded p-5 h-32">
         <div className="mb-6 grid grid-cols-6  gap-5">
-            {/* inputs div */}
+ 
             <input
                 onChange={(e) => handleOnChange(e)}
                 name="word"
@@ -52,9 +50,9 @@ export default function CardEditItem({ card , cardId, setCards , cards }) {
             </button>
 
             <button
-                onClick={(e)=> deleteCard()}
+                onClick={(e) => deleteCard(e)}
                 type="button"
-            className="bg-red-500 hover:bg-blue-700 text-white text-xl font-bold py-3 px-8 rounded focus:outline-none focus:shadow-outline" >
+                className="bg-red-500 hover:bg-blue-700 text-white text-xl font-bold py-3 px-8 rounded focus:outline-none focus:shadow-outline" >
                 Delete
             </button>
 
