@@ -1,7 +1,7 @@
 import { useState } from "react"
-import Modal from "./Modal";
-import Login from "./Login";
-import Register from "./Register";
+import Modal from "../Modal";
+import Login from "../auth/Login";
+import Register from "../auth/Register";
 
 
 export default function NotUserNavbar() {

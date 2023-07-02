@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../contexts/authContext";
-import { Navigate } from "react-router-dom";
 import { getFolders } from "../axios";
-import FolderItem from "../components/FolderItem";
 import { AiFillPlusCircle } from "react-icons/ai";
 import Modal from "./Modal";
-import AddFolder from "./AddFolder";
+import AddCard from "./card/AddCard";
+import FolderItem from "./folder/FolderItem";
 
 export default function Profile() {
 
@@ -53,7 +52,7 @@ export default function Profile() {
 
 
                         {folders.map((folder) => {
-                            return <FolderItem  folderId={folder._id} folderName={folder.title} cardAmount={folder.cardAmount} user={folder.userId} />
+                            return <FolderItem  key={folder._id} folder={folder} user={folder.userId} />
                         })}
 
 
@@ -62,7 +61,7 @@ export default function Profile() {
 
                 {/* add folder modal */}
                 <Modal isOpen={isShowAddFolderModal} onClose={() => setIsShowAddFolderModal(false)} title={"Create New Folder"}>
-                    <AddFolder />
+                    <AddCard />
                 </Modal>
             </div>
         </div>

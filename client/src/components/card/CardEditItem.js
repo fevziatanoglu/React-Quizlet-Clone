@@ -1,9 +1,9 @@
 import { useState } from "react"
-import { removeCard, updateCard } from "../axios";
+import { removeCard, updateCard } from "../../axios";
 
 
 
-export default function CardEditItem({ card , removeCardFromList }) {
+export default function CardEditItem({ card , deleteCard }) {
 
     const [cardForm, setCardForm] = useState({ cardId: card._id, word: card.word, meaning: card.meaning })
     const handleOnChange = (e) => { setCardForm({ ...cardForm, [e.target.name]: e.target.value }); }
@@ -13,16 +13,7 @@ export default function CardEditItem({ card , removeCardFromList }) {
         updateCard(cardForm).then(response => console.log(response)).catch(err => console.log(err));
     }
 
-    const deleteCard = (e) => {
-        e.preventDefault();
-        removeCard(card._id).then(response => {
-            console.log(response)
-            removeCardFromList(card._id)
-        }).catch(err => console.log(err));
-
-        // removeCardFromList(card._id);
-
-    }
+   
 
     return <form
         onSubmit={(e) =>submitEditCard(e)}
@@ -50,7 +41,7 @@ export default function CardEditItem({ card , removeCardFromList }) {
             </button>
 
             <button
-                onClick={(e) => deleteCard(e)}
+                onClick={(e) => deleteCard(e , card._id)}
                 type="button"
                 className="bg-red-500 hover:bg-blue-700 text-white text-xl font-bold py-3 px-8 rounded focus:outline-none focus:shadow-outline" >
                 Delete

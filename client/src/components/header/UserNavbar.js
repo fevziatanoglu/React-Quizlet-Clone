@@ -1,10 +1,10 @@
-import { useAuth } from "../contexts/authContext"
+import { useAuth } from "../../contexts/authContext"
 import { BsPersonFill } from "react-icons/bs"
 import { AiOutlinePlus } from "react-icons/ai"
 import { BiLogOut } from "react-icons/bi"
 import { useState } from "react";
-import Modal from "./Modal";
-import AddFolder from "./AddFolder";
+import Modal from "../Modal";
+import AddFolder from "../folder/AddFolder";
 
 
 export default function UserNavbar() {

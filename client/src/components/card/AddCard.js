@@ -1,24 +1,15 @@
 import { useState } from "react"
-import { addCard } from "../axios";
-import { toast } from "react-toastify";
 
 
-
-export default function AddCard({ folderId }) {
+export default function AddCard({ folderId, addCard }) {
 
     const [cardForm, setCardForm] = useState({ folderId, word: "", meaning: "" });
     const handleOnChange = (e) => { setCardForm({ ...cardForm, [e.target.name]: e.target.value }); }
 
-    const submitAddCard = (e) => {
-        addCard(cardForm).then(response => {
-            console.log(response);
-            toast.success(response.data.message);
-            setCardForm({ ...cardForm, word:"" , meaning:""});
-        }).catch(error => console.log(error));
-    }
+
 
     return <form
-        onSubmit={(e) => submitAddCard(e)}
+        onSubmit={(e) => { addCard(e, cardForm); setCardForm({ folderId, word: "", meaning: "" }) }}
         className="bg-blue-800 rounded p-5 ">
         <div className="flex flex-col lg:grid lg:grid-cols-5  lg:gap-5 gap-16">
             {/* inputs div */}

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { login } from "../axios";
-import { useAuth } from "../contexts/authContext";
+import { login } from "../../axios";
+import { useAuth } from "../../contexts/authContext";
 import { toast } from "react-toastify";
 
 

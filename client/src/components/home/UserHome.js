@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { getAllFolders } from "../axios";
-import FolderItem from "./FolderItem";
+import { getAllFolders } from "../../axios";
+import FolderItem from "../folder/FolderItem";
 import { AiFillPlusCircle } from "react-icons/ai";
-import AddFolder from "./AddFolder";
-import Modal from "./Modal";
+import AddFolder from "../folder/AddFolder";
+import Modal from "../Modal";
 
 export default function UserHome() {
 
@@ -40,7 +40,7 @@ export default function UserHome() {
                 </div>
 
                 {folders.map((folder, index) => {
-                    return <FolderItem folderId={folder._id} folderName={folder.title} cardAmount={folder.cardAmount}  user={folder.userId}/>
+                    return <FolderItem key={folder._id} folder={folder} user={folder.userId}/>
                 })}
             </div>
         </div>

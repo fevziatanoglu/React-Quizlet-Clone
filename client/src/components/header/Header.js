@@ -1,5 +1,5 @@
 
-import { useAuth } from "../contexts/authContext"
+import { useAuth } from "../../contexts/authContext"
 import UserNavbar from "./UserNavbar";
 import NotUserNavbar from "./NotUserNavbar";
 

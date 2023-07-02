@@ -1,7 +1,5 @@
-import { useEffect } from "react";
-import Folder from "../components/EditFolder";
 import {useParams} from "react-router-dom";
-import EditFolder from "../components/EditFolder";
+import EditFolder from "../components/folder/EditFolder";
 
 
 export default function FolderPage(){

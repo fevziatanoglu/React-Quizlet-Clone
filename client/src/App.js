@@ -2,10 +2,10 @@ import HomePage from "./pages/homePage";
 import LoginPage from "./pages/loginPage";
 import {Routes, Route} from "react-router-dom";
 import RegisterPage from "./pages/registerPage";
-import Header from "./components/Header";
 import Modal from "./components/Modal";
 import ProfilePage from "./pages/profilePage";
 import FolderPage from "./pages/folderPage";
+import Header from "./components/header/Header";
 
 function App() {
   return (

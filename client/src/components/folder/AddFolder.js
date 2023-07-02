@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useAuth } from "../contexts/authContext";
-import { addFolder } from "../axios";
+import { useAuth } from "../../contexts/authContext";
+import { addFolder } from "../../axios";
 
 
 export default function AddFolder() {
