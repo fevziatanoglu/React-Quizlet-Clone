@@ -6,7 +6,6 @@ export default function FolderPage(){
 
     const {folderId} = useParams();
 
-   
 
     return <EditFolder folderId={folderId}/>
 

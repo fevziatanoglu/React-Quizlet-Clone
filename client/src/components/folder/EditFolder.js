@@ -3,7 +3,7 @@ import { getCards, getFolder, removeCard, updateFolder, addCard } from "../../ax
 import { toast } from "react-toastify";
 import CardEditItem from "../card/CardEditItem";
 import Modal from "../Modal";
-import AddCard from  "../card/AddCard";
+import AddCard from "../card/AddCard";
 import { AiOutlinePlus } from "react-icons/ai"
 
 
@@ -27,7 +27,7 @@ export default function EditFolder({ folderId }) {
     function addCardSubmit(e, formData) {
         e.preventDefault();
         addCard(formData).then(response => {
-            console.log(response); 
+            console.log(response);
             let newCard = response.data.card;
             setCards([...cards, newCard]);
             console.log(cards);
@@ -62,7 +62,7 @@ export default function EditFolder({ folderId }) {
             console.log(response);
             setCards(response.data.folderCards)
         }).catch(error => console.log(error));
-    }, [0])
+    }, [])
 
 
     return <div className="lg:mt-10 xs:mt-32 lg:p-16 xs:p-5">
