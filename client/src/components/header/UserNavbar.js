@@ -17,7 +17,7 @@ export default function UserNavbar() {
     {/* navbar */}
     <nav className="fixed w-full top-0 bg-blue-950">
       {/* main div */}
-      <div className="flex h-16 items-center justify-between lg:px-5">
+      <div className="flex h-16 items-center justify-between p-3 lg:px-5 ">
 
         {/* pages div */}
         <div className="flex items-center">
