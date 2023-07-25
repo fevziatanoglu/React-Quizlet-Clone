@@ -1,6 +1,6 @@
 import { useAuth } from "../../contexts/authContext"
 import { BsPersonFill } from "react-icons/bs"
-import { AiOutlinePlus } from "react-icons/ai"
+import { AiFillHome, AiOutlinePlus } from "react-icons/ai"
 import { BiLogOut } from "react-icons/bi"
 import { useState } from "react";
 import Modal from "../Modal";
@@ -21,25 +21,32 @@ export default function UserNavbar() {
 
         {/* pages div */}
         <div className="flex items-center">
-          <a className="font-bold text-3xl text-white hover:cursor-pointer" href="">Quizlet</a>
+          <a className="font-bold text-3xl text-white hover:cursor-pointer" href="/home">Quizlet</a>
 
-          <div className="ml-10 flex  gap-5 text-sm font-semibold text-white">
+          <div className="hidden ml-10 md:flex  gap-5 text-sm font-semibold text-white">
             <a className="hover:cursor-pointer p-4  border-blue-950 border-b-8 hover:border-blue-500 hover:border-b-8" href="/home">Home</a>
             <a className="hover:cursor-pointer p-4  border-blue-950 border-b-8 hover:border-blue-500 hover:border-b-8" href="/profile">Your Folders</a>
           </div>
+
         </div>
 
         {/* buttons div */}
         <div className="flex gap-3 text-sm font-semibold">
 
+          <a className="bg-green-500 flex p-3 rounded-3xl items-center hover:cursor-pointer hover:bg-blue-300"
+          href="/home"
+          >
+            <AiFillHome size={25}/>
+          </a>
+
           {/* add folder button */}
           <button
-            onClick={(e)=> setIsShowAddFolderModal(true)}
+            onClick={(e) => setIsShowAddFolderModal(true)}
             className="bg-blue-500 flex p-3 rounded-3xl items-center hover:cursor-pointer hover:bg-blue-300" >
             <AiOutlinePlus size={25} />
           </button>
 
-          {/* dropdown menu */}
+          {/* dropdown menu button */}
           <button
             onClick={() => { setIsDropdownOpen((prev) => !prev); }}
             className="bg-yellow-500 flex p-3 rounded-3xl items-center hover:cursor-pointer hover:bg-yellow-300">
@@ -67,7 +74,7 @@ export default function UserNavbar() {
             </button>
 
           </div>}
-
+          {/* logout button */}
           <button onClick={(e) => { logoutUser() }} className="bg-red-500 flex p-3 rounded-3xl items-center hover:cursor-pointer hover:bg-red-600"> <BiLogOut size={25} /></button>
 
         </div>
@@ -75,7 +82,7 @@ export default function UserNavbar() {
       </div>
 
     </nav>
-       
+
     {/* add folder modal */}
     <Modal isOpen={isShowAddFolderModal} onClose={() => setIsShowAddFolderModal(false)} title={"Create New Folder"}>
       <AddFolder />

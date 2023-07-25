@@ -12,15 +12,15 @@ export default function NotUserNavbar() {
 
     return (
         <>
-            <nav className="fixed w-full top-0 bg-white  w-45">
-                <div className="flex h-16 items-center justify-center gap-5 lg:justify-between lg:px-5">
+            <nav className="fixed w-full top-0 bg-white  w-45 ">
+                <div className="flex h-16 items-center  gap-5 justify-between px-5">
 
                     <div className="flex items-center">
-                        <a className="font-bold text-3xl text-blue-600 hover:cursor-pointer" href="">Quizlet</a>
+                        <a className="font-bold text-3xl text-blue-600 hover:cursor-pointer" href="/home">Quizlet</a>
 
-                        <div className="ml-10 flex gap-5 text-sm font-semibold ">
+                        <div className="hidden ml-10 md:flex gap-5 text-sm font-semibold ">
                             <a className="hover:cursor-pointer p-4  border-white border-b-8 hover:border-blue-500 hover:border-b-8" href="/home">Home</a>
-                            <a className="hover:cursor-pointer p-4  border-white border-b-8 hover:border-blue-500 hover:border-b-8" href="https://github.com/fevziatanoglu/React-Quizlet-Clone">Source Codes</a>
+                            <a className="hover:cursor-pointer p-4  border-white border-b-8 hover:border-blue-500 hover:border-b-8" href="https://github.com/fevziatanoglu/React-Quizlet-Clone" target="_blank">Source Codes</a>
                         </div>
 
                     </div>
