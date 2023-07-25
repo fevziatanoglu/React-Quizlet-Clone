@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { removeCard, updateCard } from "../../axios";
+import { AiFillDelete, AiOutlineCheck } from "react-icons/ai";
 
 
 
@@ -17,8 +18,8 @@ export default function CardEditItem({ card , deleteCard }) {
 
     return <form
         onSubmit={(e) =>submitEditCard(e)}
-        className="bg-blue-800 rounded p-5 h-32">
-        <div className="mb-6 grid grid-cols-6  gap-5">
+        className="bg-blue-800 rounded p-3 h-32 flex items-center justify-between">
+        <div className="mb-6 grid grid-cols-6 w-full gap-5">
  
             <input
                 onChange={(e) => handleOnChange(e)}
@@ -34,17 +35,15 @@ export default function CardEditItem({ card , deleteCard }) {
 
 
 
-
-
-            <button className="bg-yellow-500 hover:bg-blue-700 text-white text-xl font-bold py-3 px-8 rounded focus:outline-none focus:shadow-outline" type="submit">
-                Apply
+            <button className="bg-yellow-500 hover:bg-blue-700 text-white md:p-3 col-span-1 text-xl font-bold flex justify-center items-center rounded-xl  focus:outline-none focus:shadow-outline" type="submit">
+                <AiOutlineCheck size={35}/>
             </button>
 
             <button
                 onClick={(e) => deleteCard(e , card._id)}
                 type="button"
-                className="bg-red-500 hover:bg-blue-700 text-white text-xl font-bold py-3 px-8 rounded focus:outline-none focus:shadow-outline" >
-                Delete
+                className="bg-red-500 hover:bg-blue-700 text-white md:p-3 col-span-1 text-xl font-bold flex justify-center items-center rounded-xl  focus:outline-none focus:shadow-outline" >
+                <AiFillDelete size={35}/>
             </button>
 
 

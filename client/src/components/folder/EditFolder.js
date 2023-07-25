@@ -65,15 +65,15 @@ export default function EditFolder({ folderId }) {
     }, [])
 
 
-    return <div className="lg:mt-10 xs:mt-32 lg:p-16 xs:p-5">
+    return <div className="lg:mt-10 xs:mt-32 lg:p-16 p-5">
 
         <h1 className="font-bold text-white text-3xl mb-6">Customize Your Folder</h1>
-
+        {/* change folder name form */}
         <form
             onSubmit={(e) => submitEditFolder(e)}
             className="">
-            <div className="mb-6 grid grid-row grid-cols-2 ">
-                <div className="flex flex-col  gap-2 ">
+            <div className="mb-6 flex flex-col md:flex-row  gap-5 ">
+                <div className="flex flex-col gap-2 md:w-2/3">
                     <label className="text-gray-400 font-bold">Title</label>
                     <input
                         onChange={(e) => handleOnChange(e)}
@@ -89,7 +89,7 @@ export default function EditFolder({ folderId }) {
                         className="font-semibold text-white bg-transparent shadow  border-yellow-500 border-b-4 rounded  py-2 px-3  leading-tight focus:border-b-8 focus:outline-none focus:shadow-outline" id="desc" type="text" placeholder="Folder description" />
                 </div>
 
-                <div className="flex items-start justify-end  p-2 ">
+                <div className="flex items-start justify-end  md:w-1/3 p-2 ">
                     <button className="bg-yellow-500 hover:bg-blue-700 text-white text-xl font-bold py-3 px-8 rounded focus:outline-none focus:shadow-outline" type="submit">
                         Apply
                     </button>
@@ -106,16 +106,15 @@ export default function EditFolder({ folderId }) {
             {/* OPEN ADD CARD MODAL BUTTON */}
             <button
                 onClick={() => setIsShowAddCard(true)}
-                className="bg-blue-800 rounded  text-white text-3xl border-yellow-500 border-4 border-dashed border-white font-bold flex item-center justify-center p-10 gap-2 hover:bg-yellow-500 hover:text-blue-700">
+                className="bg-blue-800 rounded  text-white text-3xl  border-4 border-dashed border-white font-bold flex item-center justify-center p-10 gap-2 hover:bg-yellow-500 hover:text-blue-700">
                 ADD CARD <AiOutlinePlus size={40} className="bg-white rounded-2xl text-blue-700" />
             </button>
 
             {/* CARDS */}
             {cards.map((card) => {
-                return <>
-                    <CardEditItem key={card._id} card={card} deleteCard={deleteCardSubmit} />
-                    {/* <button onClick={()=> removeCardFromList(card._id)}>x</button> */}
-                </>
+        
+                return  <CardEditItem key={card._id} card={card} deleteCard={deleteCardSubmit} />
+                
             })}
 
         </div>
