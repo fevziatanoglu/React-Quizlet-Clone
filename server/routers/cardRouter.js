@@ -3,6 +3,7 @@ const router = express.Router();
 
 const Card = require("../models/cardModel.js");
 const Folder = require("../models/folderModel.js");
+const { updateCard } = require('../../client/src/axios/index.js');
 
 
 
@@ -24,7 +25,7 @@ router.post("/add" , async (req, res) => {
             meaning
         })
 
-        // const updatedFolder = await Folder.findOneAndUpdate({ _id: folderId }, { cardAmount: cardAmount++ , updatedAt: Date.now() }, { new: true })
+        const updatedFolder = await Folder.findOneAndUpdate({ _id: folderId }, { cardAmount : updateCard.cardAmount++ , updatedAt: Date.now() }, { new: true })
 
         return res.status(200).json({ message: "Card added successfully.", card : newCard });
 
